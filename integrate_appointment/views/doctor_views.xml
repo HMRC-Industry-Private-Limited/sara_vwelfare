@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_form_inherit" model="ir.ui.view">
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="fetch_and_create_doctors" 
+                        string="Import Doctors" 
+                        type="object" 
+                        class="oe_highlight"/>
+                <button name="sync_appointments" 
+                        string="Sync Appointments" 
+                        type="object" 
+                        class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <div class="oe_clear"/>
+                <label for="doctor_id" string="Doctor ID"/>
+                <field name="doctor_id"/>
+
+            </xpath>
+            <xpath expr="//field[@name='login']" position="after">
+                <div class="oe_clear"/>
+                <label for="last_sync_time" string="Last Sync Time"/>
+                <field name="last_sync_time" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

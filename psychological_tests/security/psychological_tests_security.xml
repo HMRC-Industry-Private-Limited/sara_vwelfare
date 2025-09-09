@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="group_psych_test_public" model="res.groups">
+    <field name="name">Psychological Test - Public</field>
+    <field name="category_id" ref="base.module_category_hidden" />
+    <!--     <field name="implied_ids" eval="[(4, ref('base.group_public'))]" /> -->
+
+  </record>
+
+  <!--     لماذا لم نُضف implied_ids إلى group_psych_test_public؟
+  لأن:
+  ✅ base.group_public:
+  هي المجموعة الافتراضية للـ الزائرين (الزوار غير المسجلين)، وهم لا يمتلكون حسابات ستخدم فعلية.
+  🔸 إذا أضفت:
+  <field name="implied_ids" eval="[(4, ref('base.group_public'))]"/>
+  فهذا لن يكون له تأثير فعلي، لأن group_psych_test_public لا يتم تعيينها للمستخدمين بشكل صريح — بل الزائرين (Anonymous) يُعتبرون ضمن base.group_public تلقائيًا، ولا يتم تحميل مجموعات إضافية لهم. -->
+  <!--     <field name="implied_ids" eval="[(4, ref('base.group_public'))]" /> -->
+
+
+  <record id="group_psych_test_portal" model="res.groups">
+    <field name="name">Psychological Test - Portal</field>
+    <field name="category_id" ref="base.module_category_hidden" />
+    <field name="implied_ids" eval="[(4, ref('base.group_portal'))]" />
+  </record>
+
+
+</odoo>

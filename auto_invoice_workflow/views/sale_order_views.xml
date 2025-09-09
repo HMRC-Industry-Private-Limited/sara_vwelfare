@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_inherit_auto_invoice" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.auto.invoice</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="order_line" position="after">
+                <div class="alert alert-info" role="alert">
+                    This order will automatically generate and validate an invoice upon confirmation.
+                </div>
+            </field>
+        </field>
+    </record>
+</odoo>

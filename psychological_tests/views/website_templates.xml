@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!--     # page psychological_tests   -->
+  <template id="psychological_tests.test_list_template" name="Psychological Tests">
+    <t t-call="website.layout">
+      <!-- Navbar مخصص -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Home</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/psychological_tests">الاختبارات النفسية</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Container for All Tests -->
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+
+            <!-- Individual Tests Section -->
+            <div class="row g-4 justify-content-center">
+              <t t-foreach="psychological_tests" t-as="test">
+                <div class="col-md-6 col-lg-6">
+                  <div class="card h-100 shadow-sm rounded-4 border-0 transition-all hover:shadow-lg">
+
+                    <!-- العنوان -->
+                    <div class="card-header bg-white border-0 text-center pt-3 pb-0">
+                      <h5 class="fw-bold mb-2 text-dark"
+                          style="font-size: 1.25rem;"
+                          t-esc="test.name" />
+                    </div>
+
+                    <!-- الصورة -->
+                    <t t-if="test.image">
+                      <div class="position-relative overflow-hidden rounded-top" style="height: 200px;">
+                        <img t-att-src="'data:image/png;base64,' + test.image.decode()"
+                             class="img-fluid w-100 h-100 rounded-0"
+                             alt="Test Image"
+                             style="object-fit: contain; background-color: #f8f9fa;" />
+                      </div>
+                    </t>
+
+                    <!-- الوصف  -->
+                    <div class="card-body text-center px-3 py-3">
+                      <p class="text-muted mb-3 fw-bold"
+                         style="font-size: 0.95rem;"
+                         t-esc="test.description" />
+                    </div>
+
+                  </div>
+                </div>
+              </t>
+            </div>
+
+            <!-- Test Types Section -->
+            <div class="mt-2 mb-2 pt-2">
+              <h2 class="text-center mb-5 fw-bold text-primary">أنواع الاختبارات</h2>
+              <div class="row g-4">
+                <t t-foreach="tests_types" t-as="test">
+                  <div class="col-md-4">
+                    <a t-att-href="'/test_type/%s' % test.id" class="text-decoration-none">
+                      <div class="card h-100 border-0 shadow rounded-4 transition-all hover:shadow-md">
+                        <div class="position-relative overflow-hidden rounded-top" style="height: 180px;">
+                          <img t-if="test.image"
+                               t-att-src="'data:image/png;base64,' + test.image.decode()"
+                               class="img-fluid w-100 h-100 rounded-top-4"
+                               style="object-fit: cover; transition: transform 0.4s ease-in-out;"
+                               onmouseover="this.style.transform='scale(1.05)'"
+                               onmouseout="this.style.transform='scale(1)'" />
+                        </div>
+                        <div class="card-body text-center px-3">
+                          <h3 t-esc="test.name" class="h5 fw-bold mb-2 text-dark" />
+                          <p t-esc="test.description" class="text-muted" style="font-size: 0.9rem;" />
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </t>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <style>
+        /* Additional CSS for image transitions */
+        .transition-all {
+        transition: all 0.3s ease;
+        }
+
+        .hover\:shadow-lg:hover {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .hover\:shadow-md:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        /* Fill effect for images */
+        .position-relative img {
+        object-position: center;
+        }
+
+        /* Additional transition for test type images */
+        [t-foreach="tests_types"] .card .position-relative {
+        border-radius: 16px 16px 0 0;
+        overflow: hidden;
+        }
+
+        [t-foreach="tests_types"] .card:hover img {
+        transform: scale(1.08);
+        }
+      </style>
+    </t>
+  </template>
+
+  <!--   page detail template قالب صفحة التفاصيل -->
+  <template id="test_detail_template" name="Test Type Detail">
+    <t t-call="website.layout">
+      <div class="container mt-5 text-center test-detail-container">
+        <h1 t-esc="test.name" style="color: #6d2077;"
+            class="fw-bold mb-3" />
+        <div class="card-body text-center px-3 py-3">
+          <p class="text-muted mb-3" t-esc="test.description" />
+          <a t-att-href="'/start_test/%s' % test.id"
+             class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold">
+            ابدأ اختبارك الآن
+          </a>
+        </div>
+        <p class="mt-1"
+           style="color: #666; padding: 10px 20px;">
+          سنحتاج منك لحظات للإجابة على بعض الأسئلة التي تساعدك في اختبار حالتك النفسية
+        </p>
+      </div>
+    </t>
+  </template>
+</odoo>

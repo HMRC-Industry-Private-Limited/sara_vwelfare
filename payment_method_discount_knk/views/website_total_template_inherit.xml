@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="total_update">
+        <div id="cart_total" t-if="website_sale_order and website_sale_order.website_order_line" t-att-class="_cart_total_classes">
+            <table class="table mb-0">
+                <tr id="order_total_untaxed">
+                    <td id="cart_total_subtotal"
+                        class="border-0 pb-2 ps-0 pt-0 text-start text-muted"
+                        colspan="2">
+                        Subtotal
+                    </td>
+                    <td class="text-end border-0 pb-2 pe-0 pt-0">
+                        <span t-field="website_sale_order.amount_untaxed"
+                              class="monetary_field"
+                              style="white-space: nowrap;"
+                              t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"/>
+                    </td>
+                </tr>
+                <tr id="order_total_taxes">
+                    <td colspan="2" class="text-muted border-0 ps-0 pt-0 pb-3">Taxes</td>
+                    <td class="text-end border-0 pe-0 pt-0 pb-3">
+                        <span t-field="website_sale_order.amount_tax"
+                              class="monetary_field"
+                              style="white-space: nowrap;"
+                              t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"/>
+                    </td>
+                </tr>
+                <t t-if="payment_method_discount_enabled">
+                    <tr id="order_total_discount">
+                        <td colspan="2" class="text-muted border-0 ps-0 pt-0 pb-3">Discount</td>
+                        <td class="text-end border-0 pe-0 pt-0 pb-3">
+                            <span t-field="website_sale_order.total_discount"
+                                  class="monetary_field"
+                                  style="white-space: nowrap;"
+                                  t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"/>
+                        </td>
+                    </tr>
+                </t>
+                <t t-else="">
+                </t>
+
+                <tr id="order_total" class="border-top">
+                    <td colspan="2" class="border-0 ps-0 pt-3"><strong>Total</strong></td>
+                    <td class="text-end border-0 px-0 pt-3">
+                        <strong t-field="website_sale_order.amount_total"
+                                class="monetary_field text-end p-0"
+                                t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </template>
+</odoo>

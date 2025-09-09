@@ -1,0 +1,21 @@
+@font-face {
+font-family: 'Almarai';
+src: url('/psychological_tests/static/src/fonts/Almarai-Regular.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face {
+font-family: 'BaskervvilleSC';
+src: url('/psychological_tests/static/src/fonts/BaskervvilleSC-Regular.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+
+
+@font-face {
+font-family: 'NerkoOne';
+src: url('/psychological_tests/static/src/fonts/NerkoOne-Regular.ttf') format('truetype');
+/*font-weight: normal;*/
+/*font-style: normal;*/
+}

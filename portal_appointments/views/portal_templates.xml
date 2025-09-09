@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add Appointments to portal home -->
+    <template id="portal_my_home_appointments" name="Portal My Home : Appointments" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Appointments</t>
+                <t t-set="url" t-value="'/my/appointments'"/>
+                <t t-set="placeholder_count" t-value="'appointment_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Simple appointments listing page -->
+    <template id="portal_my_appointments" name="My Appointments">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Appointments</t>
+            </t>
+            
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-12">
+                        <t t-if="not appointments">
+                            <div class="alert alert-info text-center" style="margin: 50px 0;">
+                                <h4><i class="fa fa-calendar-o"></i> No appointments found</h4>
+                                <p>You don't have any appointments yet.</p>
+                                <a href="/shop" class="btn btn-primary">Book an Appointment</a>
+                            </div>
+                        </t>
+                        
+                        <t t-else="">
+                            <div class="row">
+                                <t t-foreach="appointments" t-as="appointment">
+                                    <div class="col-md-6 col-lg-4 mb-4">
+                                        <div class="card shadow-sm">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5 class="card-title mb-0">
+                                                    <i class="fa fa-calendar"></i>
+                                                    <span t-field="appointment.name"/>
+                                                </h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-2">
+                                                    <strong><i class="fa fa-calendar-o mr-2"></i>Date:</strong><br/>
+                                                    <span t-field="appointment.start" t-options="{'widget': 'date', 'format': 'MMMM dd, yyyy'}"/>
+                                                </div>
+                                                
+                                                <div class="mb-2">
+                                                    <strong><i class="fa fa-clock-o mr-2"></i>Time:</strong><br/>
+                                                    <span t-field="appointment.start" t-options="{'widget': 'datetime', 'format': 'HH:mm'}"/> - 
+                                                    <span t-field="appointment.stop" t-options="{'widget': 'datetime', 'format': 'HH:mm'}"/>
+                                                </div>
+                                                
+                                                <div class="mb-2">
+                                                    <strong><i class="fa fa-info-circle mr-2"></i>Status:</strong><br/>
+                                                    <t t-if="appointment.state == 'confirmed'">
+                                                        <span class="badge badge-success">Confirmed</span>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span class="badge badge-warning" t-field="appointment.state"/>
+                                                    </t>
+                                                </div>
+                                                
+                                                <t t-if="appointment.description">
+                                                    <div class="mt-3">
+                                                        <strong>Details:</strong><br/>
+                                                        <small class="text-muted" t-field="appointment.description"/>
+                                                    </div>
+                                                </t>
+                                            </div>
+                                            <div class="card-footer text-center bg-light">
+                                                <small class="text-muted">
+                                                    <t t-if="appointment.start &gt; datetime.datetime.now()">
+                                                        <i class="fa fa-clock-o text-success"></i> Upcoming
+                                                    </t>
+                                                    <t t-else="">
+                                                        <i class="fa fa-check text-secondary"></i> Completed
+                                                    </t>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                            
+                            <!-- Pager -->
+                            <div t-call="portal.pager" class="mt-4"/>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

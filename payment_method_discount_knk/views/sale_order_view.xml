@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="payment_provider_id" string="Payment Provider" placeholder="Select a payment provider" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='note']" position="before">
+                <group>
+                    <!-- <field name="discount_method" style='width: 100px;' readonly="state != 'draft'"/> -->
+                    <field name="discount_method" style='width: 100px;' readonly="state != 'draft'" invisible="state != 'draft'"/>
+                    <field name="discount_fix" invisible="discount_method != 'fix'" readonly="state != 'draft'"/>
+                    <field name="discount_per" invisible="discount_method != 'percentage'" readonly="state != 'draft'" />
+                    <div style="width: 200px;">
+                        <button name="update_price" string="Update Total" type="object" class="btn-primary" invisible="state != 'draft'" />
+                    </div><br/><br/><br/>
+                </group>
+            </xpath>
+            
+            <xpath expr="//field[@name='tax_totals']" position="after">
+                <field name="total_discount" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

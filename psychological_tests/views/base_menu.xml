@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <menuitem id="psychological_tests_menu_root"
+            name="Psychological Tests"
+            sequence="3"
+            web_icon="psychological_tests,static/description/icon.png" />
+
+  <menuitem id="psychological_tests_menu_items"
+            name="Psychological Tests"
+            parent="psychological_tests.psychological_tests_menu_root"
+            action="psychological_tests.action_psychological_test"
+            sequence="1" />
+
+  <menuitem id="menu_test_type"
+            name="Tests Types"
+            parent="psychological_tests.psychological_tests_menu_root"
+            action="psychological_tests.action_test_type"
+            sequence="2" />
+
+  <!--   Menu للأسئلة -->
+  <menuitem id="menu_test_type_question"
+            name="Test Questions"
+            parent="psychological_tests.psychological_tests_menu_root"
+            action="psychological_tests.action_test_type_question"
+            sequence="3" />
+
+  <!-- Menu للخيارات -->
+  <menuitem id="menu_test_type_option"
+            name="Test Options"
+            parent="psychological_tests.psychological_tests_menu_root"
+            action="psychological_tests.action_test_type_option"
+            sequence="4" />
+
+  <!--   Menu للنتايج   -->
+  <menuitem id="menu_test_result_lines"
+            name="Tests Results"
+            parent="psychological_tests.psychological_tests_menu_root"
+            action="psychological_tests.action_test_result_line"
+            sequence="5" />
+
+  <!-- Menu للإجابات -->
+  <menuitem id="menu_test_type_answer"
+            name="Test Answers"
+            parent="psychological_tests.psychological_tests_menu_root"
+            action="psychological_tests.action_test_type_answer"
+            sequence="6" />
+
+  <!-- Menu item for Test Statistics -->
+  <menuitem id="menu_test_type_statistics"
+            name="Tests Statistics Dashboard"
+            parent="psychological_tests.psychological_tests_menu_root"
+            action="psychological_tests.action_test_type_statistics"
+            sequence="7" />
+
+</odoo>

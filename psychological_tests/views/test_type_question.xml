@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Tree View للأسئلة -->
+  <record id="view_test_type_question_tree" model="ir.ui.view">
+    <field name="name">test.type.question.tree</field>
+    <field name="model">test.type.question</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name" />
+        <field name="question_type" />
+        <field name="score" />
+        <field name="test_id" />
+      </tree>
+    </field>
+  </record>
+
+  <!-- Form View للأسئلة -->
+  <record id="view_test_type_question_form" model="ir.ui.view">
+    <field name="name">test.type.question.form</field>
+    <field name="model">test.type.question</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="test_id" />
+            <field name="name" />
+            <field name="question_type" />
+            <field name="score" />
+          </group>
+          <group string="Options">
+            <field name="option_ids" widget="one2many_list">
+              <tree editable="bottom">
+                <field name="option_text" />
+                <field name="score" />
+              </tree>
+            </field>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Action لعرض الأسئلة -->
+  <record id="action_test_type_question" model="ir.actions.act_window">
+    <field name="name">Test Questions</field>
+    <field name="res_model">test.type.question</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+</odoo>

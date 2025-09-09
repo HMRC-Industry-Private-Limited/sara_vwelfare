@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- قالب صفحة الأسئلة -->
+  <template id="start_test_template" name="Start Test">
+    <t t-call="website.layout">
+      <div class="container mt-5 mb-5">
+        <div class="card shadow-sm" style="max-width: 700px; margin: 0 auto; border-radius: 15px; overflow: hidden;">
+          <div class="card-header text-white text-right" style="background-color: #6d2077; padding: 15px;">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">اختبار:
+                <t t-esc="test.name" />
+              </h5>
+              <a href="/psychological_tests" class="btn btn-light btn-sm rounded-circle"
+                 style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; padding: 0;">
+                <i class="fa fa-times"></i>
+              </a>
+            </div>
+            <small class="mt-2 d-block progress-text">
+              <t t-esc="(current_index or 0) + 1" />
+              من
+              <t t-esc="total_questions" />
+              أسئلة
+            </small>
+            <input type="hidden" id="current_index" t-att-value="current_index" />
+          </div>
+          <div class="card-body" style="padding: 25px;">
+            <div class="error-message-container"></div>
+            <t t-if="error">
+              <div class="alert alert-warning" role="alert">
+                <t t-esc="error" />
+              </div>
+            </t>
+            <t t-else="">
+              <form id="test_form" method="POST" t-att-action="'/submit_test/%s' % test.id">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                <t t-foreach="questions" t-as="question">
+                  <div class="question-section"
+                       t-att-data-question-id="question.id"
+                       t-att-style="'display: none;' if question_index != current_index else 'display: block;'">
+                    <!-- بداية تنسيق السؤال -->
+                    <div class="question-container"
+                         style="background-color: #f9f6fa; border-radius: 12px; padding: 20px; margin-bottom: 25px; border-right: 4px solid #6d2077;">
+                      <h6 class="text-right mb-4" style="font-size: 1.2rem; font-weight: bold;">
+                        <span class="question-number"
+                              style="background-color: #6d2077; color: white; display: inline-block; width: 32px; height: 32px; line-height: 32px; text-align: center; border-radius: 50%; margin-left: 12px; font-weight: bold;">
+                          <t t-esc="question_index + 1" />
+                        </span>
+                        <span t-esc="question.name" />
+                      </h6>
+                      <t t-if="question.question_type == 'multiple_choice'">
+                        <t t-if="not question.option_ids">
+                          <p class="text-danger text-center">لا توجد خيارات متاحة لهذا السؤال.</p>
+                        </t>
+                        <t t-else="">
+                          <div class="options-container" style="padding-right: 20px;">
+                            <t t-foreach="question.option_ids" t-as="option">
+                              <div class="form-check mb-3 d-flex justify-content-end align-items-center option-item"
+                                   style="padding: 12px; border-radius: 8px; transition: all 0.3s; border: 1px solid #e6e6e6; background-color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                <label class="form-check-label me-2"
+                                       style="font-size: 1rem; cursor: pointer; flex-grow: 1;">
+                                  <span class="option-number"
+                                        style="background-color: #a77aaf; color: white; display: inline-block; width: 25px; height: 25px; line-height: 25px; text-align: center; border-radius: 50%; margin-left: 10px; font-size: 0.9rem;">
+                                    <t t-esc="option_index + 1" />
+                                  </span>
+                                  <span t-esc="option.option_text" />
+                                </label>
+                                <input type="radio" class="form-check-input answer-input"
+                                       t-att-name="'question_%s' % question.id"
+                                       t-att-value="option.id"
+                                       required="required"
+                                       style="width: 22px; height: 22px;" />
+                              </div>
+                            </t>
+                          </div>
+                        </t>
+                      </t>
+                      <t t-if="question.question_type == 'checkbox'">
+                        <t t-if="not question.option_ids">
+                          <p class="text-danger text-center">لا توجد خيارات متاحة لهذا السؤال.</p>
+                        </t>
+                        <t t-else="">
+                          <div class="options-container" style="padding-right: 20px;">
+                            <t t-foreach="question.option_ids" t-as="option">
+                              <div class="form-check mb-3 d-flex justify-content-end align-items-center option-item"
+                                   style="padding: 12px; border-radius: 8px; transition: all 0.3s; border: 1px solid #e6e6e6; background-color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                <label class="form-check-label me-2"
+                                       style="font-size: 1rem; cursor: pointer; flex-grow: 1;">
+                                  <span class="option-number"
+                                        style="background-color: #a77aaf; color: white; display: inline-block; width: 25px; height: 25px; line-height: 25px; text-align: center; border-radius: 50%; margin-left: 10px; font-size: 0.9rem;">
+                                    <t t-esc="option_index + 1" />
+                                  </span>
+                                  <span t-esc="option.option_text" />
+                                </label>
+                                <input type="checkbox" class="form-check-input answer-input"
+                                       t-att-name="'question_%s[]' % question.id"
+                                       t-att-value="option.id"
+                                       style="width: 22px; height: 22px;" />
+                              </div>
+                            </t>
+                          </div>
+                        </t>
+                      </t>
+                      <t t-if="question.question_type == 'text'">
+                        <div style="padding-right: 20px;">
+                          <textarea class="form-control answer-input"
+                                    t-att-name="'question_%s' % question.id"
+                                    rows="4"
+                                    required="required"
+                                    style="resize: none; font-size: 1rem; border-radius: 8px;
+                        border: 1px solid #ced4da; text-align: start;
+                        white-space: pre-wrap; padding: 8px;" />
+
+                        </div>
+                      </t>
+                    </div>
+                    <!-- نهاية تنسيق السؤال -->
+                  </div>
+                </t>
+                <div class="d-flex justify-content-between mt-4">
+                  <button type="button" id="prev_button" class="btn btn-outline-secondary rounded-circle"
+                          style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;"
+                          t-att-disabled="'disabled' if current_index == 0 else None">
+                    <i class="fa fa-arrow-right"></i>
+                  </button>
+                  <button type="button" id="next_button" class="btn rounded-circle"
+                          style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; background-color: #a77aaf; border: none;"
+                          disabled="disabled">
+                    <i class="fa fa-arrow-left"></i>
+                  </button>
+                  <button type="submit" id="submit_button" class="btn btn-success" style="display: none;">
+                    عرض النتيجة
+                  </button>
+                </div>
+              </form>
+            </t>
+          </div>
+        </div>
+      </div>
+      <!-- تضمين ملف JavaScript -->
+      <script type="text/javascript" src="/psychological_tests/static/src/js/test_navigation.js"></script>
+      <style>
+        /* إضافة تأثير عند تحويم المؤشر فوق الخيارات */
+        .option-item:hover {
+        background-color: #f8f0fc !important;
+        border-color: #a77aaf !important;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1) !important;
+        }
+
+        /* تأثير عند اختيار خيار */
+        .option-item input:checked + label,
+        .option-item:has(input:checked) {
+        background-color: #f3e5f5 !important;
+        border-color: #8e4798 !important;
+        }
+      </style>
+    </t>
+  </template>
+
+
+  <!--  قالب لعرض النتيجة page submit test questions-->
+  <template id="test_result_template" name="Test Result">
+    <t t-call="website.layout">
+      <div class="container mt-5 mb-5">
+        <div class="card shadow-lg rounded-lg">
+          <div class="card-body">
+            <!-- عنوان الاختبار -->
+            <h2 class="text-center mb-4 text-primary">
+              نتيجة اختبار:
+              <t t-esc="test.name" />
+            </h2>
+
+            <!-- عرض النقاط -->
+            <div class="text-center mb-3">
+              <h4>
+                إجمالي النقاط:
+                <span class="badge bg-info text-dark px-3 py-2">
+                  <t t-esc="total_score" />
+                  /
+                  <t t-esc="max_score" />
+                </span>
+              </h4>
+            </div>
+
+            <!-- عرض النتيجة النهائية -->
+            <t t-if="result_text">
+              <div class="mt-4">
+                <t t-set="alert_class" t-value="'alert alert-%s py-3 px-4 text-center fw-bold fs-5' % result_class" />
+                <div t-att-class="alert_class">
+                  <t t-esc="result_text" />
+                </div>
+              </div>
+            </t>
+
+            <!-- زر الرجوع -->
+            <div class="text-center mt-4">
+              <a href="/psychological_tests" class="btn btn-outline-primary">
+                العودة إلى صفحة الاختبارات
+              </a>
+            </div>
+
+            <!-- إضافة رابط لعرض الإجابات في واجهة Odoo  -->
+
+            <!--             <div class="mt-4 text-center" t-if="request.env.user.has_group('base.group_user')"> -->
+            <!--               <a t-att-href="odoo_link" class="btn btn-primary" target="_blank"> -->
+            <!--                 عرض تفاصيل الإجابات في النظام -->
+            <!--               </a> -->
+            <!--             </div> -->
+
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+
+</odoo>

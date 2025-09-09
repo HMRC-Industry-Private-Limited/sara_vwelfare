@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="payment_acquirer_form_paytabs" model="ir.ui.view">
+            <field name="name">payment.provider.form.inherit</field>
+            <field name="model">payment.provider</field>
+            <field name="inherit_id" ref="payment.payment_provider_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//group[@name="provider_credentials"]' position='after'>
+                    <group invisible="code != 'paytabs'">
+                        <field name="merchant_id"/>
+                        <field name="merchant_email"/>
+                        <field name="secret_key"/>
+                        <field name="secret_hash"/>
+                        <field name="api_endpoint" widget="url"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+	   

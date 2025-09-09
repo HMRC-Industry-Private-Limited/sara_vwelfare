@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Website Menu -->
+  <record id="menu_psychological_tests" model="website.menu">
+    <field name="name">الاختبارات النفسية</field>
+    <field name="parent_id" ref="website.main_menu" />
+    <field name="url">/psychological_tests</field>
+    <field name="sequence">50</field> <!-- ترتيب العنصر في القائمة -->
+  </record>
+  <!--     <field name="website_id" eval="False" /> &lt;!&ndash; معرف الموقع الافتراضي ويب سايت  For all websites &ndash;&gt; -->
+  <!--     <field name="website_id" eval="1" /> &lt;!&ndash; معرف الموقع الافتراضي ويب سايت رقم 1 &ndash;&gt; -->
+  <!--     <field name="website_id" ref="website.website2" /> -->
+
+</odoo>

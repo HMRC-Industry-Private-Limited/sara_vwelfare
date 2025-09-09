@@ -1,0 +1,125 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* payment_paytabs
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-06 06:08+0000\n"
+"PO-Revision-Date: 2021-12-06 06:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: payment_paytabs
+#: model:ir.model,name:payment_paytabs.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: payment_paytabs
+#: model:ir.model,name:payment_paytabs.model_res_country
+msgid "Country"
+msgstr "País"
+
+#. module: payment_paytabs
+#: model:ir.model.fields,field_description:payment_paytabs.field_res_country__code_alpha3
+msgid "Country Code (3-letter)"
+msgstr "Código de país (3 letras)"
+
+#. module: payment_paytabs
+#: model:ir.model.fields,field_description:payment_paytabs.field_res_country__code_numeric
+msgid "Country Code (numeric)"
+msgstr "Código de país (numérico)"
+
+#. module: payment_paytabs
+#: model_terms:ir.ui.view,arch_db:payment_paytabs.registration_form_extend
+msgid "First Name"
+msgstr "Primer nombre"
+
+#. module: payment_paytabs
+#: model:ir.model.fields,field_description:payment_paytabs.field_res_partner__last_name
+#: model:ir.model.fields,field_description:payment_paytabs.field_res_users__last_name
+#: model_terms:ir.ui.view,arch_db:payment_paytabs.registration_form_extend
+#: model_terms:ir.ui.view,arch_db:payment_paytabs.res_partner_inherit
+msgid "Last Name"
+msgstr "Apellido"
+
+#. module: payment_paytabs
+#: model:ir.model.fields,field_description:payment_paytabs.field_payment_acquirer__merchant_email
+msgid "Merchant Email"
+msgstr "Correo electrónico del comerciante"
+
+#. module: payment_paytabs
+#: model:payment.acquirer,name:payment_paytabs.payment_acquirer_paytabs
+msgid "PayTabs"
+msgstr "PayTabs"
+
+#. module: payment_paytabs
+#: model:ir.model,name:payment_paytabs.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "Adquiriente de pago"
+
+#. module: payment_paytabs
+#: model:ir.model,name:payment_paytabs.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "Transaccion de pago"
+
+#. module: payment_paytabs
+#: model:ir.model.fields.selection,name:payment_paytabs.selection__payment_acquirer__provider__paytabs
+msgid "Paytabs"
+msgstr "Fichas de pago"
+
+#. module: payment_paytabs
+#: model:ir.model.fields,field_description:payment_paytabs.field_payment_acquirer__provider
+msgid "Provider"
+msgstr "Proveedora"
+
+#. module: payment_paytabs
+#: model:ir.model.fields,field_description:payment_paytabs.field_payment_acquirer__secret_key
+msgid "Secret Key"
+msgstr "Llave secreta"
+
+#. module: payment_paytabs
+#: model_terms:payment.acquirer,pre_msg:payment_paytabs.payment_acquirer_paytabs
+msgid ""
+"You will be redirected to the PayTabs website after clicking on the payment "
+"button."
+msgstr ""
+"Será redirigido al sitio web de PayTabs después de hacer clic en el pago. "
+"botón."
+
+#. module: payment_paytabs
+#: model_terms:payment.acquirer,auth_msg:payment_paytabs.payment_acquirer_paytabs
+msgid "Your payment has been authorized."
+msgstr "Su pago ha sido autorizado."
+
+#. module: payment_paytabs
+#: model_terms:payment.acquirer,cancel_msg:payment_paytabs.payment_acquirer_paytabs
+msgid "Your payment has been cancelled."
+msgstr "Tu pago ha sido cancelado."
+
+#. module: payment_paytabs
+#: model_terms:payment.acquirer,pending_msg:payment_paytabs.payment_acquirer_paytabs
+msgid ""
+"Your payment has been successfully processed but is waiting for approval."
+msgstr ""
+"Su pago se ha procesado correctamente, pero está pendiente de aprobación."
+
+#. module: payment_paytabs
+#: model_terms:payment.acquirer,done_msg:payment_paytabs.payment_acquirer_paytabs
+msgid "Your payment has been successfully processed. Thank you!"
+msgstr "Su pago se ha procesado correctamente. ¡Gracias!"
+
+#. module: payment_paytabs
+#: model_terms:ir.ui.view,arch_db:payment_paytabs.registration_form_extend
+msgid "e.g. Doe"
+msgstr "p.ej. Gama"
+
+#. module: payment_paytabs
+#: model_terms:ir.ui.view,arch_db:payment_paytabs.registration_form_extend
+msgid "e.g. John"
+msgstr "p.ej. John"

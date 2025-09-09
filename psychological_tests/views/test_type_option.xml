@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Tree View للخيارات -->
+  <record id="view_test_type_option_tree" model="ir.ui.view">
+    <field name="name">test.type.option.tree</field>
+    <field name="model">test.type.option</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="option_text" />
+        <field name="score" />
+        <field name="question_id" />
+      </tree>
+    </field>
+  </record>
+
+  <!-- Form View للخيارات -->
+  <record id="view_test_type_option_form" model="ir.ui.view">
+    <field name="name">test.type.option.form</field>
+    <field name="model">test.type.option</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="question_id" />
+            <field name="option_text" />
+            <field name="score" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Action لعرض الخيارات -->
+  <record id="action_test_type_option" model="ir.actions.act_window">
+    <field name="name">Test Options</field>
+    <field name="res_model">test.type.option</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+</odoo>

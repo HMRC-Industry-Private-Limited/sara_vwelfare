@@ -1,0 +1,27 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_psychological_test,Psychological Test,model_psychological_test,base.group_user,1,1,1,1
+access_depression_test,Depression Test,model_test_type,base.group_user,1,1,1,1
+access_test_type_question,Test Type Question,model_test_type_question,base.group_user,1,1,1,1
+access_test_type_option,Test Type Option,model_test_type_option,base.group_user,1,1,1,1
+access_test_type_answer,Test Type Answer,model_test_type_answer,base.group_user,1,1,1,1
+access_test_type_answer_line,Test Type Answer Line,model_test_type_answer_line,base.group_user,1,1,1,1
+access_test_type_result_line,Test Type Result Line,model_test_type_result_line,base.group_user,1,1,1,1
+access_testtype_statistics,Test Type Statistics,model_test_type_statistics,base.group_user,1,1,1,1
+
+access_psychological_test_portal,Psychological Test Portal,model_psychological_test,base.group_portal,1,0,0,0
+access_test_type_portal,Test Type Portal,model_test_type,base.group_portal,1,0,0,0
+access_test_type_question_portal,Test Type Question Portal,model_test_type_question,base.group_portal,1,0,0,0
+access_test_type_option_portal,Test Type Option Portal,model_test_type_option,base.group_portal,1,0,0,0
+access_test_type_answer_portal,Test Type Answer Portal,model_test_type_answer,base.group_portal,1,0,0,0
+access_test_type_answer_line_portal,Test Type Answer Line Portal,model_test_type_answer_line,base.group_portal,1,0,0,0
+access_test_type_result_line_portal,Test Type Result Line Portal,model_test_type_result_line,base.group_portal,1,0,0,0
+access_testtype_statistics_portal,Test Type Statistics Portal,model_test_type_statistics,base.group_portal,1,0,0,0
+
+access_psychological_test_public,Psychological Test Public,model_psychological_test,base.group_public,1,0,0,0
+access_test_type_public,Test Type Public,model_test_type,base.group_public,1,0,0,0
+access_test_type_question_public,Test Type Question Public,model_test_type_question,base.group_public,1,0,0,0
+access_test_type_option_public,Test Type Option Public,model_test_type_option,base.group_public,1,0,0,0
+access_test_type_answer_public,Test Type Answer Public,model_test_type_answer,base.group_public,1,0,0,0
+access_test_type_answer_line_public,Test Type Answer Line Public,model_test_type_answer_line,base.group_public,1,0,0,0
+access_test_type_result_line_public,Test Type Result Line Public,model_test_type_result_line,base.group_public,1,0,0,0
+access_testtype_statistics_public,Test Type Statistics Public,model_test_type_statistics,base.group_public,1,0,0,0

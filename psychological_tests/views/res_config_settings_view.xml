@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- views/res_config_settings_view.xml -->
+<odoo>
+  <record id="view_psychology_config_settings" model="ir.ui.view">
+    <field name="name">res.config.settings.view.form.inherit.psychology</field>
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="base.res_config_settings_view_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//form" position="inside">
+        <group string="Psychological Test Settings" class="oe_highlight ms-3 mb-3">
+          <group col="2" colspan="2">
+            <group string="Visitors (Guests)">
+              <field name="show_for_public" string="Show pages for Visitors (Guests)" />
+              <div class="text-muted" style="white-space: nowrap;">Allows your visitors to access psychological tests
+              </div>
+            </group>
+            <group string="Logged-in Users">
+              <field name="show_for_loggedin" string="Show pages for Logged-in Users" />
+              <div class="text-muted"
+                   style="white-space: nowrap;">Allows logged-in users to access psychological tests
+              </div>
+            </group>
+          </group>
+        </group>
+      </xpath>
+    </field>
+  </record>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+<odoo>
+    <data noupdate="1">
+        <record id="payment_method_paytabs" model="payment.method">
+            <field name="name">PayTabs</field>
+            <field name="code">paytabs</field>
+            <field name="active">True</field>
+            <field name="image" type="base64" file="payment_paytabs_wk/static/src/img/optimized-logo-in-horizontal.png"/>
+            <field name="support_tokenization">True</field>
+        </record>
+        <record id="payment_acquirer_paytabs" model="payment.provider">
+            <field name="name">PayTabs</field>
+            <field name="code">paytabs</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="redirect_form_view_id" ref="redirect_form"/>
+            <field name="module_id" ref="base.module_payment_paytabs_wk"/>
+            <field name="image_128" type="base64" file="payment_paytabs_wk/static/src/img/optimized-logo-in-horizontal.png"/>
+            <field name="payment_method_ids" eval="[Command.set([ref('payment_paytabs_wk.payment_method_paytabs'),])]"/>
+        </record>
+    </data>
+</odoo>
